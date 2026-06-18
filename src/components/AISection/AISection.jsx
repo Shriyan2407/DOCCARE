@@ -1,162 +1,163 @@
 import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import './AISection.css';
 
-const insights = [
+const operations = [
   {
-    id: 'risk-analysis',
-    label: 'Risk Analysis',
-    title: 'Predictive Health Risk Assessment',
-    description: 'Our AI analyzes 200+ biomarkers to predict potential health risks up to 5 years in advance — enabling preventive care before symptoms emerge.',
-    metrics: [
-      { label: 'Accuracy', value: '97.3%' },
-      { label: 'Early Detection', value: '5 Years' },
-      { label: 'Biomarkers', value: '200+' },
-    ],
+    id: 'specialists',
+    label: 'Specialists',
+    title: 'World-Class Medical Specialists',
+    description: 'Connect with board-certified physicians across 40+ specialties. View detailed profiles, verified patient reviews, and real-time availability before booking.',
+    buttonText: 'Find a Doctor',
+    visual: (
+      <div className="ops-visual-card">
+        <div className="ops-card-header">
+          <div className="ops-avatar">SJ</div>
+          <div className="ops-info">
+            <div className="ops-name">Dr. Sarah Jenkins</div>
+            <div className="ops-spec text-gold">Cardiology</div>
+          </div>
+        </div>
+        <div className="ops-slots">
+          <div className="ops-slot">Today, 2:30 PM</div>
+          <div className="ops-slot">Tomorrow, 10:00 AM</div>
+          <div className="ops-slot">Thu, 1:15 PM</div>
+        </div>
+        <div className="ops-ai-assist">
+          <span className="ai-badge">AI Assistant</span>
+          <p>Matched based on your recent ECG records and preferred schedule.</p>
+        </div>
+      </div>
+    )
   },
   {
-    id: 'diagnostics',
-    label: 'Smart Diagnostics',
-    title: 'AI-Powered Diagnostic Intelligence',
-    description: 'Upload lab results, imaging, or symptom data. Our diagnostic AI provides instant, physician-reviewed interpretations with actionable insights.',
-    metrics: [
-      { label: 'Diagnoses', value: '1.2M+' },
-      { label: 'Response', value: '<30s' },
-      { label: 'Accuracy', value: '99.1%' },
-    ],
+    id: 'appointments',
+    label: 'Appointments',
+    title: 'Seamless Appointment Management',
+    description: 'Book, reschedule, or cancel consultations instantly. Receive automated reminders and manage your entire healthcare schedule from one unified dashboard.',
+    buttonText: 'Manage Appointments',
+    visual: (
+      <div className="ops-visual-card">
+        <div className="ops-calendar-header">Upcoming Consultations</div>
+        <div className="ops-apt-item">
+          <div className="ops-apt-date">
+            <span className="ops-day text-gold">12</span>
+            <span className="ops-month">Oct</span>
+          </div>
+          <div className="ops-apt-details">
+            <div className="ops-apt-type">Annual Checkup</div>
+            <div className="ops-apt-doc">Dr. Michael Chen</div>
+          </div>
+        </div>
+        <div className="ops-apt-item">
+          <div className="ops-apt-date">
+            <span className="ops-day text-gold">24</span>
+            <span className="ops-month">Oct</span>
+          </div>
+          <div className="ops-apt-details">
+            <div className="ops-apt-type">Neurology Follow-up</div>
+            <div className="ops-apt-doc">Dr. Emily Thorne</div>
+          </div>
+        </div>
+      </div>
+    )
   },
   {
-    id: 'personalized',
-    label: 'Personalized Plans',
-    title: 'Adaptive Health Optimization',
-    description: 'Receive a continuously updating health plan that adapts to your biometric data, lifestyle changes, and medical history in real-time.',
-    metrics: [
-      { label: 'Data Points', value: '50K+' },
-      { label: 'Updates', value: 'Daily' },
-      { label: 'Specialists', value: '500+' },
-    ],
-  },
+    id: 'records',
+    label: 'Health Records',
+    title: 'Unified Medical History',
+    description: 'Securely access your lab results, prescriptions, imaging, and consultation notes. Maintain a comprehensive health timeline accessible anywhere.',
+    buttonText: 'Access Records',
+    visual: (
+      <div className="ops-visual-card">
+        <div className="ops-records-list">
+          <div className="ops-record-item">
+            <div className="ops-record-icon">📄</div>
+            <div className="ops-record-info">
+              <div className="ops-record-title">Comprehensive Metabolic Panel</div>
+              <div className="ops-record-date">Added 2 days ago</div>
+            </div>
+            <div className="ops-record-status text-gold">Available</div>
+          </div>
+          <div className="ops-record-item">
+            <div className="ops-record-icon">💊</div>
+            <div className="ops-record-info">
+              <div className="ops-record-title">Lisinopril 10mg Prescription</div>
+              <div className="ops-record-date">Active</div>
+            </div>
+            <div className="ops-record-status">1 Refill</div>
+          </div>
+        </div>
+      </div>
+    )
+  }
 ];
 
-const AISection = () => {
+const OperationsSection = () => {
   const [activeTab, setActiveTab] = useState(0);
-  const active = insights[activeTab];
+  const active = operations[activeTab];
 
   return (
-    <section className="ai-section section" id="ai">
-      <div className="ai-bg-glow" />
+    <section className="ops-section section" id="operations">
       <div className="container">
-        <div className="ai-layout">
-          {/* Left — Content */}
-          <div className="ai-content">
-            <div className="badge badge-gold">AI Health Intelligence</div>
+        <div className="ops-header-center">
+          <h2 className="text-display-md gradient-text-gold">Healthcare Engineered For Modern Life.</h2>
+          <p className="text-body text-center" style={{ maxWidth: '600px', margin: '0 auto', opacity: 0.8 }}>
+            Access specialists, appointments, medical records, and healthcare services through one unified platform.
+          </p>
+        </div>
 
-            <h2 className="ai-title text-display-md">
-              Healthcare Powered<br />
-              by <span className="gradient-text-gold">Artificial Intelligence</span>
-            </h2>
-
-            <p className="ai-description text-body">
-              DOCCARE's proprietary AI engine processes millions of data points to deliver insights that are personalized, precise, and predictive.
-            </p>
-
-            {/* Tabs */}
-            <div className="ai-tabs" role="tablist">
-              {insights.map((ins, i) => (
+        <div className="ops-layout mt-2xl">
+          {/* Left — Tabs & Content */}
+          <div className="ops-content">
+            <div className="ops-tabs" role="tablist">
+              {operations.map((op, i) => (
                 <button
-                  key={ins.id}
-                  className={`ai-tab ${activeTab === i ? 'ai-tab--active' : ''}`}
+                  key={op.id}
+                  className={`ops-tab ${activeTab === i ? 'ops-tab--active' : ''}`}
                   onClick={() => setActiveTab(i)}
                   role="tab"
-                  id={`ai-tab-${ins.id}`}
                   aria-selected={activeTab === i}
                 >
-                  {ins.label}
+                  {op.label}
                 </button>
               ))}
             </div>
 
-            {/* Tab content */}
-            <div className="ai-tab-content" key={activeTab}>
-              <h3 className="ai-insight-title">{active.title}</h3>
-              <p className="ai-insight-desc">{active.description}</p>
-              <div className="ai-insight-metrics">
-                {active.metrics.map((m, i) => (
-                  <div key={i} className="ai-metric">
-                    <span className="ai-metric-value">{m.value}</span>
-                    <span className="ai-metric-label">{m.label}</span>
-                  </div>
-                ))}
-              </div>
-              <button className="btn btn-gold" id={`ai-learn-${active.id}`}>
-                Learn More
-                <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
-                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </button>
+            <div className="ops-tab-content-wrapper">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeTab}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.3 }}
+                  className="ops-tab-content"
+                >
+                  <h3 className="ops-insight-title text-heading">{active.title}</h3>
+                  <p className="ops-insight-desc text-body">{active.description}</p>
+                  <button className="btn btn-gold mt-lg">
+                    {active.buttonText}
+                  </button>
+                </motion.div>
+              </AnimatePresence>
             </div>
           </div>
 
           {/* Right — Visual panel */}
-          <div className="ai-visual">
-            <div className="ai-visual-card">
-              {/* Header */}
-              <div className="ai-visual-header">
-                <div className="ai-visual-dot" />
-                <div className="ai-visual-dot" />
-                <div className="ai-visual-dot" />
-                <span className="ai-visual-title">DOCCARE AI Engine</span>
-              </div>
-
-              {/* Live analysis */}
-              <div className="ai-analysis">
-                <div className="ai-analysis-label">Analyzing Health Profile</div>
-
-                {/* Progress bars */}
-                {[
-                  { label: 'Cardiovascular', value: 94, color: '#D4AF37' },
-                  { label: 'Metabolic', value: 87, color: '#E6C56A' },
-                  { label: 'Neurological', value: 91, color: '#D4AF37' },
-                  { label: 'Immunological', value: 78, color: '#E6C56A' },
-                ].map((item, i) => (
-                  <div key={i} className="ai-progress-item" style={{ '--delay': `${i * 0.15}s` }}>
-                    <div className="ai-progress-header">
-                      <span className="ai-progress-label">{item.label}</span>
-                      <span className="ai-progress-value" style={{ color: item.color }}>{item.value}%</span>
-                    </div>
-                    <div className="ai-progress-bar">
-                      <div
-                        className="ai-progress-fill"
-                        style={{
-                          width: `${item.value}%`,
-                          background: `linear-gradient(90deg, ${item.color}80, ${item.color})`,
-                          animationDelay: `${i * 0.15}s`,
-                        }}
-                      />
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {/* AI insight output */}
-              <div className="ai-output">
-                <div className="ai-output-header">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-                    <path d="M12 2a7 7 0 0 1 7 7c0 3-1.5 5.5-4 6.8V17h-6v-1.2C6.5 14.5 5 12 5 9a7 7 0 0 1 7-7z" stroke="#D4AF37" strokeWidth="1.5" />
-                    <rect x="9" y="17" width="6" height="2" rx="1" stroke="#D4AF37" strokeWidth="1.5" />
-                  </svg>
-                  <span>AI Insight</span>
-                </div>
-                <p className="ai-output-text">
-                  Your cardiovascular indicators show a 12% improvement from last month. Maintaining current exercise regimen is recommended.
-                </p>
-              </div>
-
-              {/* Floating stat */}
-              <div className="ai-float-stat">
-                <span className="ai-float-val">99.1%</span>
-                <span className="ai-float-label">Diagnostic Accuracy</span>
-              </div>
-            </div>
+          <div className="ops-visual">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeTab}
+                initial={{ opacity: 0, scale: 0.95, filter: 'blur(10px)' }}
+                animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+                exit={{ opacity: 0, scale: 1.05, filter: 'blur(10px)' }}
+                transition={{ duration: 0.4 }}
+                className="ops-visual-container"
+              >
+                {active.visual}
+              </motion.div>
+            </AnimatePresence>
           </div>
         </div>
       </div>
@@ -164,4 +165,4 @@ const AISection = () => {
   );
 };
 
-export default AISection;
+export default OperationsSection;

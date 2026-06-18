@@ -54,12 +54,12 @@ const PageTransition = ({ children }) => {
   );
 };
 
-import GlobalScene from './components/GlobalScene/GlobalScene';
+import AmbientBackground from './components/AmbientBackground/AmbientBackground';
 
 const AppContent = ({ visible }) => {
   return (
     <div className={`app-content ${visible ? 'app-content--visible' : ''}`}>
-      <GlobalScene />
+      <AmbientBackground />
       <Navbar />
       <ScrollToTop />
       
