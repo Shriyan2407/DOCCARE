@@ -1,0 +1,172 @@
+/* ═══════════════════════════════════════════════════════════
+   MEDICARE — CINEMATIC AI HEALTHCARE OS
+   Apple Vision Pro. Linear. Stripe.
+   ═══════════════════════════════════════════════════════════ */
+
+:root {
+  /* ── Typography ── */
+  --font-display:  'Clash Display', 'Satoshi', sans-serif;
+  --font-heading:  'Satoshi', 'Inter', sans-serif;
+  --font-body:     'Inter', system-ui, sans-serif;
+  --font-numbers:  'Space Grotesk', 'Inter', sans-serif;
+
+  /* ── Ultra Dark Palette (OLED Black) ── */
+  --void:        #000000;
+  --bg:          #000000; /* Pure OLED Black */
+  --bg-2:        #020202; /* Deep Space */
+  --bg-card:     #050505; /* Black Card Base */
+  --bg-elevated: #050505; /* Black Elevated */
+
+  /* ── Primary Accent (Electric Blue) ── */
+  --primary-strong:  #2563EB;
+  --primary:         #3B82F6;
+  --primary-light:   #60A5FA;
+  --secondary-glow:  #38BDF8;
+
+  /* ── Theme Glows ── */
+  --glow-subtle: rgba(59, 130, 246, 0.08);
+  --glow-base:   rgba(59, 130, 246, 0.15);
+  --glow-strong: rgba(56, 189, 248, 0.35);
+
+  /* ── Gold Accent (Restricted to badges/ratings only) ── */
+  --gold:        #D4AF37;
+  --gold-soft:   #E8C766;
+
+  /* ── Text ── */
+  --white:       #FFFFFF;
+  --text-1:      #FFFFFF;
+  --text-2:      #E2E8F0;
+  --text-3:      #94A3B8;
+  --text-4:      #64748B;
+
+  /* ── Borders ── */
+  --border-1:    rgba(255, 255, 255, 0.03);
+  --border-2:    rgba(255, 255, 255, 0.06);
+  --border-3:    rgba(255, 255, 255, 0.1);
+
+  /* ── Luxury Card System ── */
+  --card-bg:       rgba(255, 255, 255, 0.02);
+  --card-blur:     blur(32px);
+  --card-border:   1px solid rgba(255, 255, 255, 0.08);
+  --card-shadow:   0 0 50px rgba(59, 130, 246, 0.08);
+  --card-radius:   32px;
+
+  /* ── Cinematic Shadows ── */
+  --shadow-blue-sm: 0 4px 24px rgba(59, 130, 246, 0.12);
+  --shadow-blue-md: 0 8px 48px rgba(59, 130, 246, 0.18);
+  --shadow-blue-lg: 0 16px 80px rgba(56, 189, 248, 0.25);
+  --shadow-dark-sm: 0 4px 24px rgba(0, 0, 0, 0.5);
+  --shadow-dark-md: 0 8px 48px rgba(0, 0, 0, 0.7);
+  --shadow-dark-lg: 0 16px 80px rgba(0, 0, 0, 0.9);
+
+  /* ── Transitions ── */
+  --ease-luxury:     cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-cinematic:  cubic-bezier(0.76, 0, 0.24, 1);
+  --ease-spring:     cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --duration-fast:   150ms;
+  --duration-base:   300ms;
+  --duration-slow:   600ms;
+  --duration-slower: 900ms;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   RESET
+   ═══════════════════════════════════════════════════════════ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  color-scheme: dark;
+  background: #000000 !important;
+}
+
+body {
+  font-family: var(--font-body);
+  background: #000000 !important;
+  color: var(--text-1);
+  min-height: 100vh;
+  overflow-x: hidden;
+  line-height: 1.5;
+}
+
+/* Lenis smooth scroll */
+html.lenis { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  isolation: isolate;
+  background: radial-gradient(
+    circle at 20% 20%,
+    rgba(59,130,246,0.12),
+    transparent 35%
+  ),
+  radial-gradient(
+    circle at 80% 70%,
+    rgba(96,165,250,0.08),
+    transparent 40%
+  ),
+  #000000 !important;
+}
+
+/* ── Selection ── */
+::selection {
+  background: rgba(59, 130, 246, 0.3);
+  color: #fff;
+}
+
+/* ── Typography ── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 900;
+  color: var(--text-1);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  text-shadow: 0 0 30px rgba(255,255,255,0.15);
+}
+
+h1 { font-size: clamp(4rem, 8vw, 8rem); font-weight: 900; letter-spacing: -0.06em; }
+h2 { font-size: clamp(2.5rem, 5vw, 5rem); font-weight: 900; letter-spacing: -0.05em; }
+h3 { font-size: clamp(1.5rem, 2.5vw, 2rem); font-weight: 900; }
+
+p {
+  font-family: var(--font-body);
+  color: var(--text-2);
+  line-height: 1.7;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img { max-width: 100%; display: block; }
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb {
+  background: rgba(59, 130, 246, 0.3);
+  border-radius: 9999px;
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
