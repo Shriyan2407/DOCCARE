@@ -35,9 +35,12 @@
   /* ── Text ── */
   --white:       #FFFFFF;
   --text-1:      #FFFFFF;
-  --text-2:      #E2E8F0;
-  --text-3:      #94A3B8;
-  --text-4:      #64748B;
+  --text-2:      #CBD5E1;
+  --text-3:      #F8FAFC;
+  --text-4:      #94A3B8;
+  --text-5:      #64748B;
+  --link:        #60A5FA;
+  --link-hover:  #93C5FD;
 
   /* ── Borders ── */
   --border-1:    rgba(255, 255, 255, 0.03);
@@ -131,16 +134,16 @@ html.lenis { height: auto; }
 /* ── Typography ── */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
-  font-weight: 900;
+  font-weight: 800;
   color: var(--text-1);
   line-height: 1.05;
   letter-spacing: -0.04em;
   text-shadow: 0 0 30px rgba(255,255,255,0.15);
 }
 
-h1 { font-size: clamp(4rem, 8vw, 8rem); font-weight: 900; letter-spacing: -0.06em; }
-h2 { font-size: clamp(2.5rem, 5vw, 5rem); font-weight: 900; letter-spacing: -0.05em; }
-h3 { font-size: clamp(1.5rem, 2.5vw, 2rem); font-weight: 900; }
+h1 { font-size: clamp(4rem, 8vw, 8rem); font-weight: 800; letter-spacing: -0.06em; color: var(--text-1); }
+h2 { font-size: clamp(2.5rem, 5vw, 5rem); font-weight: 800; letter-spacing: -0.05em; color: var(--text-1); }
+h3 { font-size: clamp(1.5rem, 2.5vw, 2rem); font-weight: 800; color: var(--text-1); }
 
 p {
   font-family: var(--font-body);
@@ -150,7 +153,12 @@ p {
 
 a {
   text-decoration: none;
-  color: inherit;
+  color: var(--link);
+  transition: color var(--duration-base) ease;
+}
+
+a:hover {
+  color: var(--link-hover);
 }
 
 img { max-width: 100%; display: block; }

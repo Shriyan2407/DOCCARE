@@ -59,7 +59,7 @@ const Navbar = () => {
               <path d="M12 2v20M2 12h20" />
             </svg>
           </div>
-          MediCare
+          DocCare
         </Link>
 
         {/* Desktop nav */}

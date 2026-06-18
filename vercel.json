@@ -1,5 +1,7 @@
 {
-  "name": "doccare",
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ],
   "github": {
     "enabled": true
   }

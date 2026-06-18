@@ -137,7 +137,7 @@
 /* Subtitle */
 .hero-subtitle {
   font-size: clamp(1rem, 1.5vw, 1.2rem);
-  color: #94a3b8;
+  color: var(--text-4); /* #94A3B8 */
   line-height: 1.75;
   max-width: 560px;
   margin: 0 0 2.5rem 0;
@@ -200,7 +200,7 @@
 .hero-btn-secondary {
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #f1f5f9;
+  color: var(--text-2); /* #CBD5E1 */
   backdrop-filter: blur(12px);
 }
 
@@ -242,7 +242,7 @@
 
 .hero-trust-text {
   font-size: 0.8rem;
-  color: #64748b;
+  color: var(--text-5); /* #64748B */
   margin: 0;
 }
 
@@ -330,7 +330,7 @@
   gap: 0.4rem;
   font-size: 0.78rem;
   font-weight: 600;
-  color: #64748b;
+  color: var(--text-5); /* #64748B */
   letter-spacing: 0.04em;
 }
 
@@ -405,7 +405,7 @@
 .dp-stat-val {
   font-size: 1.375rem;
   font-weight: 700;
-  color: #f1f5f9;
+  color: var(--text-1); /* #FFFFFF */
   font-family: 'Satoshi', sans-serif;
   letter-spacing: -0.03em;
   line-height: 1;
@@ -414,7 +414,7 @@
 .dp-stat-val span {
   font-size: 0.65rem;
   font-weight: 500;
-  color: #64748b;
+  color: var(--text-5); /* #64748B */
   margin-left: 2px;
   letter-spacing: 0;
 }
@@ -422,7 +422,7 @@
 .dp-stat-label {
   font-size: 0.65rem;
   font-weight: 600;
-  color: #475569;
+  color: var(--text-5); /* #64748B */
   text-transform: uppercase;
   letter-spacing: 0.05em;
   margin-top: 0.15rem;
@@ -462,7 +462,7 @@
 .dp-chart-title {
   font-size: 0.72rem;
   font-weight: 600;
-  color: #64748b;
+  color: var(--text-5); /* #64748B */
   text-transform: uppercase;
   letter-spacing: 0.06em;
 }
@@ -520,13 +520,13 @@
 .dp-appt-name {
   font-size: 0.85rem;
   font-weight: 600;
-  color: #f1f5f9;
+  color: var(--text-1); /* #FFFFFF */
   margin-bottom: 0.15rem;
 }
 
 .dp-appt-specialty {
   font-size: 0.72rem;
-  color: #64748b;
+  color: var(--text-5); /* #64748B */
 }
 
 .dp-appt-status {
@@ -591,7 +591,7 @@
 .hero-stat-value {
   font-size: 0.95rem;
   font-weight: 700;
-  color: #f1f5f9;
+  color: var(--text-1); /* #FFFFFF */
   font-family: 'Satoshi', sans-serif;
   letter-spacing: -0.02em;
 }
@@ -599,7 +599,7 @@
 .hero-stat-label {
   font-size: 0.65rem;
   font-weight: 500;
-  color: #64748b;
+  color: var(--text-5); /* #64748B */
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
@@ -655,7 +655,7 @@
 
 .hero-ai-body {
   font-size: 0.72rem;
-  color: #94a3b8;
+  color: var(--text-4); /* #94A3B8 */
   font-weight: 400;
   line-height: 1.3;
 }
@@ -684,7 +684,7 @@
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #475569;
+  color: var(--text-5); /* #64748B */
 }
 
 /* ═══════════════════════════════════════════════════════════

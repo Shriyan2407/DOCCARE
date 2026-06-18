@@ -115,10 +115,10 @@ const DoctorCard = ({ doctor, index = 0 }) => {
         </div>
 
         <div style={{ flex: 1, minWidth: 0 }}>
-          <h3 style={{ margin: '0 0 0.35rem', fontSize: '1.05rem', fontWeight: 700, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+          <h3 style={{ margin: '0 0 0.35rem', fontSize: '1.05rem', fontWeight: 700, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', color: '#FFFFFF' }}>
             {doctor.name}
           </h3>
-          <span className="badge badge-primary" style={{ fontSize: '0.68rem', background: `${color}15`, color: color, borderColor: `${color}30` }}>
+          <span className="badge badge-primary" style={{ fontSize: '0.68rem', background: `${color}15`, color: '#60A5FA', borderColor: `${color}30` }}>
             {doctor.specialization}
           </span>
         </div>
@@ -136,7 +136,7 @@ const DoctorCard = ({ doctor, index = 0 }) => {
             <Clock size={11} />
             Experience
           </div>
-          <div style={{ fontWeight: 700, fontSize: '1rem', color: '#f1f5f9' }}>{doctor.experience}</div>
+          <div style={{ fontWeight: 700, fontSize: '1rem', color: '#CBD5E1' }}>{doctor.experience}</div>
         </div>
 
         <div style={{
@@ -168,8 +168,8 @@ const DoctorCard = ({ doctor, index = 0 }) => {
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
               <Star size={14} fill="#fbbf24" color="#fbbf24" />
-              <span style={{ fontWeight: 700, fontSize: '1rem', color: '#f1f5f9' }}>{doctor.rating}</span>
-              <span style={{ color: '#475569', fontSize: '0.78rem' }}>({doctor.reviews} reviews)</span>
+              <span style={{ fontWeight: 700, fontSize: '1rem', color: '#FFFFFF' }}>{doctor.rating}</span>
+              <span style={{ color: '#64748B', fontSize: '0.78rem' }}>({doctor.reviews} reviews)</span>
             </div>
           </div>
           {/* Mini star bars */}
