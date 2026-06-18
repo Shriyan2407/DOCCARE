@@ -1,24 +1,95 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="manifest" href="/manifest.json" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DocCare</title>
-    <meta name="description" content="DocCare — The world's most premium AI-powered healthcare platform." />
-    <meta property="og:title" content="DocCare" />
-    <meta property="og:description" content="DocCare — The world's most premium AI-powered healthcare platform." />
-    <meta name="theme-color" content="#050505" />
+    <meta name="description" content="DOCCARE — Luxury AI Healthcare Operating System. Access your healthcare records, appointments, specialists, and AI insights through one secure platform." />
+    <meta name="theme-color" content="#000000" />
+    <title>DOCCARE — Luxury Healthcare OS</title>
 
-    <!-- Clash Display — Premium heading font -->
-    <link rel="preconnect" href="https://api.fontshare.com" />
-    <link href="https://api.fontshare.com/v2/css?f[]=clash-display@800,700,600&f[]=satoshi@700,600,500,400&display=swap" rel="stylesheet" />
-
-    <!-- Space Grotesk (numbers) + Inter (body) -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Clash Display via CDN -->
+    <style>
+      @font-face {
+        font-family: 'Clash Display';
+        src: url('https://api.fontshare.com/v2/css?f[]=clash-display@600,700,500&display=swap');
+      }
+    </style>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --bg-primary: #000000;
+        --bg-secondary: #050505;
+        --bg-card: #0A0A0A;
+        --bg-card-hover: #111111;
+        --text-primary: #FFFFFF;
+        --text-secondary: #B0B0B0;
+        --text-muted: #808080;
+        --gold: #D4AF37;
+        --gold-soft: #E6C56A;
+        --gold-dim: rgba(212,175,55,0.15);
+        --gold-glow: rgba(212,175,55,0.35);
+        --font-heading: 'Clash Display', 'Inter', sans-serif;
+        --font-body: 'Inter', sans-serif;
+        --font-number: 'Space Grotesk', sans-serif;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        background: #000000;
+        color: #FFFFFF;
+      }
+
+      body {
+        font-family: var(--font-body);
+        background: #000000;
+        color: #FFFFFF;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      #root {
+        min-height: 100vh;
+        background: #000000;
+      }
+
+      ::selection {
+        background: rgba(212,175,55,0.3);
+        color: #FFFFFF;
+      }
+
+      ::-webkit-scrollbar {
+        width: 4px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: #000000;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: rgba(212,175,55,0.4);
+        border-radius: 2px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: rgba(212,175,55,0.7);
+      }
+    </style>
   </head>
   <body>
     <div id="root"></div>

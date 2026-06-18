@@ -1,0 +1,68 @@
+.expandable-tabs-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--gold-border);
+  background: var(--bg-card);
+  padding: 6px;
+  box-shadow: var(--shadow-navbar);
+}
+
+.expandable-tab-separator {
+  margin: 0 4px;
+  height: 24px;
+  width: 1.5px;
+  background: var(--gold-dim);
+}
+
+.expandable-tab-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border-radius: var(--radius-lg);
+  padding: 8px 16px;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 500;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.expandable-tab-inactive {
+  color: var(--text-muted);
+}
+
+.expandable-tab-inactive:hover {
+  background: var(--white-faint);
+  color: var(--text-primary);
+}
+
+.expandable-tab-inactive:hover .icon-gray {
+  color: var(--text-primary);
+}
+
+.expandable-tab-active {
+  background: var(--gold-dim);
+  color: var(--gold);
+}
+
+.icon-gray {
+  color: var(--text-muted);
+  transition: color var(--transition-fast);
+}
+
+.icon-gold {
+  color: var(--gold);
+}
+
+.expandable-tab-text {
+  overflow: hidden;
+  display: inline-block;
+  white-space: nowrap;
+}

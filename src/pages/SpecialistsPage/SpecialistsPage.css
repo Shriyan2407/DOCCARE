@@ -1,0 +1,262 @@
+.specialists-page {
+  padding-top: 120px;
+  min-height: 100vh;
+}
+
+.specialists-header {
+  padding: 60px 0 80px;
+  background: radial-gradient(ellipse at top center, rgba(212, 175, 55, 0.05) 0%, transparent 70%);
+  border-bottom: 1px solid var(--gold-dim);
+}
+
+.specialists-search-bar {
+  margin-top: 40px;
+  display: flex;
+  gap: 16px;
+  background: rgba(10, 10, 10, 0.8);
+  padding: 12px;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--gold-border);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  max-width: 800px;
+}
+
+.search-input-wrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 16px;
+  background: var(--bg-secondary);
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  transition: all var(--transition-fast);
+}
+
+.search-input-wrap:focus-within {
+  border-color: var(--gold-glow);
+  box-shadow: inset 0 0 0 1px var(--gold-glow);
+}
+
+.search-input {
+  flex: 1;
+  height: 50px;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 1rem;
+}
+
+.search-input::placeholder {
+  color: var(--text-muted);
+}
+
+.search-select {
+  width: 200px;
+  height: 50px;
+  padding: 0 16px;
+  background: var(--bg-secondary);
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23808080' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  transition: all var(--transition-fast);
+}
+
+.search-select:focus {
+  border-color: var(--gold-glow);
+}
+
+/* Grid */
+.specialists-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+  padding: 60px 24px;
+}
+
+.specialist-card-rich {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  border-radius: var(--radius-xl);
+  transition: all var(--transition-med);
+  animation: fade-in-up 0.6s ease forwards;
+  opacity: 0;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.doc-avatar-wrap {
+  position: relative;
+  width: 72px;
+  height: 72px;
+}
+
+.doc-avatar-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--gold);
+  padding: 2px;
+  background: var(--bg-primary);
+}
+
+.doc-verified-badge {
+  position: absolute;
+  bottom: 0;
+  right: -4px;
+  background: var(--bg-primary);
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.doc-meta-top {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.doc-rating {
+  font-family: var(--font-number);
+  font-size: 0.9rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.doc-rating .star {
+  color: var(--gold);
+}
+
+.doc-rating span {
+  color: var(--text-muted);
+  font-weight: 400;
+  font-size: 0.8rem;
+}
+
+.doc-status {
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.status-green {
+  background: rgba(34, 197, 94, 0.1);
+  color: #4ade80;
+  border: 1px solid rgba(34, 197, 94, 0.2);
+}
+
+.status-amber {
+  background: rgba(245, 158, 11, 0.1);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+.card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.doc-name {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.doc-spec {
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.doc-hospital {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+.doc-stats {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 12px;
+}
+
+.doc-stat {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-lbl {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.stat-val {
+  font-family: var(--font-number);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.doc-languages {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+}
+
+.doc-bio-short {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: 24px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.card-footer {
+  display: flex;
+  gap: 12px;
+  margin-top: auto;
+}
+
+@media (max-width: 768px) {
+  .specialists-search-bar {
+    flex-direction: column;
+  }
+  .search-select {
+    width: 100%;
+  }
+}

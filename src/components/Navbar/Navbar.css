@@ -1,0 +1,283 @@
+/* ============================================
+   PREMIUM 3D NAVBAR (VISION PRO / ROLLS ROYCE)
+   ============================================ */
+
+.navbar-3d {
+  position: fixed;
+  top: 10px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  border-radius: 24px;
+}
+
+/* Base Glass Effect */
+.navbar-glass-layer {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 10, 10, 0.85);
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  border-radius: inherit;
+  z-index: -2;
+}
+
+/* Ambient Gold Glow */
+.navbar-ambient-glow {
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  box-shadow: 0 0 40px rgba(212, 175, 55, 0.08), inset 0 0 20px rgba(212, 175, 55, 0.05);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Top Specular Highlight */
+.navbar-ambient-glow::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 5%;
+  right: 5%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+}
+
+.navbar-content {
+  width: 100%;
+  height: 100%;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transform: translateZ(10px); /* Lift content physically off the glass */
+}
+
+/* ============================================
+   LOGO
+   ============================================ */
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  width: 220px;
+}
+
+.navbar-wordmark {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+}
+
+.text-gold {
+  background: linear-gradient(135deg, #D4AF37, #E6C56A);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ============================================
+   NAVIGATION LINKS & APPLE PILL
+   ============================================ */
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  justify-content: center;
+}
+
+.nav-link-3d {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #FFFFFF;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 12px;
+  position: relative;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+.nav-link-3d:hover {
+  color: #D4AF37;
+}
+
+/* Active Apple Pill Indicator */
+.nav-active-pill {
+  position: absolute;
+  inset: 0;
+  background: rgba(212, 175, 55, 0.1);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 12px;
+  z-index: 0;
+}
+
+.nav-active-pill-glow {
+  position: absolute;
+  bottom: -2px;
+  left: 20%;
+  right: 20%;
+  height: 2px;
+  background: #D4AF37;
+  box-shadow: 0 -4px 12px rgba(212, 175, 55, 0.8);
+  border-radius: 2px;
+}
+
+/* Hover Soft Glow */
+.nav-hover-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(255,255,255,0.08) 0%, transparent 70%);
+  border-radius: 12px;
+  z-index: 0;
+}
+
+/* ============================================
+   LIQUID GOLD BUTTON
+   ============================================ */
+.navbar-ctas {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 220px;
+}
+
+.liquid-gold-btn {
+  position: relative;
+  height: 48px;
+  padding: 0 28px;
+  border-radius: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #000;
+  text-decoration: none;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 24px rgba(212, 175, 55, 0.3);
+  transform-style: preserve-3d;
+}
+
+.liquid-gold-btn-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #D4AF37, #E6C56A, #B8A030, #D4AF37);
+  background-size: 200% 200%;
+  animation: liquidFlow 4s ease infinite;
+  z-index: 0;
+}
+
+@keyframes liquidFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Glass overlay for button */
+.liquid-gold-btn-glass {
+  position: absolute;
+  inset: 1px;
+  border-radius: 13px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 40%, rgba(0,0,0,0.1) 100%);
+  z-index: 1;
+}
+
+/* Shine Sweep */
+.liquid-gold-btn-shine {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  transform: skewX(-25deg);
+  z-index: 2;
+  transition: all 0.5s ease;
+}
+
+.liquid-gold-btn:hover .liquid-gold-btn-shine {
+  left: 200%;
+  transition: all 0.8s ease-in-out;
+}
+
+/* ============================================
+   MOBILE BURGER & MENU
+   ============================================ */
+.navbar-burger {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  z-index: 100;
+}
+
+.navbar-burger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: #B0B0B0;
+  transition: 0.3s ease;
+}
+
+.navbar-burger--open span:nth-child(1) { transform: translateY(8px) rotate(45deg); background: #D4AF37; }
+.navbar-burger--open span:nth-child(2) { opacity: 0; }
+.navbar-burger--open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); background: #D4AF37; }
+
+.navbar-mobile-3d {
+  position: fixed;
+  top: 100px;
+  left: 20px;
+  right: 20px;
+  background: rgba(10, 10, 10, 0.95);
+  backdrop-filter: blur(40px);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 24px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 999;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+}
+
+.navbar-mobile-link {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #FFFFFF;
+  padding: 16px;
+  border-radius: 12px;
+  text-decoration: none;
+  background: rgba(255,255,255,0.02);
+}
+
+.navbar-mobile-divider {
+  height: 1px;
+  background: rgba(212, 175, 55, 0.15);
+  margin: 12px 0;
+}
+
+@media (max-width: 1024px) {
+  .navbar-links { display: none; }
+}
+
+@media (max-width: 768px) {
+  .navbar-ctas { display: none; }
+  .navbar-burger { display: flex; }
+}

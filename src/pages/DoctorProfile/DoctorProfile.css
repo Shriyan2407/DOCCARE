@@ -1,0 +1,246 @@
+.doctor-profile-page {
+  padding-top: 90px; /* Account for navbar */
+  min-height: 100vh;
+}
+
+.profile-hero {
+  padding: 60px 0 80px;
+  background: radial-gradient(ellipse at center, rgba(212, 175, 55, 0.05) 0%, transparent 80%);
+  border-bottom: 1px solid var(--gold-dim);
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  margin-bottom: 40px;
+  transition: color var(--transition-fast);
+}
+
+.back-link:hover {
+  color: var(--gold);
+}
+
+.profile-header-grid {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.profile-avatar-large {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: var(--radius-2xl);
+  overflow: hidden;
+  border: 2px solid var(--gold-glow);
+  box-shadow: var(--shadow-gold);
+}
+
+.profile-avatar-large img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-verified-badge {
+  position: absolute;
+  bottom: -10px;
+  right: -10px;
+  width: 48px;
+  height: 48px;
+  background: var(--bg-primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--gold);
+}
+
+.profile-info-main {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.profile-meta-top {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.profile-hospital {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+.profile-stats-row {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  margin: 16px 0 32px;
+}
+
+.p-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.p-stat-val {
+  font-family: var(--font-number);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.p-stat-lbl {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.p-stat-divider {
+  width: 1px;
+  height: 40px;
+  background: var(--gold-border);
+}
+
+.profile-actions {
+  display: flex;
+  gap: 16px;
+}
+
+.btn-save.saved {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+/* Main Content */
+.profile-content-grid {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 60px;
+  padding: 80px var(--space-xl);
+}
+
+.profile-main-col {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+.profile-section {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.profile-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.profile-list li {
+  position: relative;
+  padding-left: 24px;
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.profile-list li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+  font-size: 1.5rem;
+  line-height: 1;
+  top: -2px;
+}
+
+.tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* Sidebar */
+.profile-sidebar {
+  position: sticky;
+  top: 120px;
+  align-self: flex-start;
+}
+
+.sidebar-card {
+  padding: 32px;
+  border-radius: var(--radius-xl);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.sidebar-heading {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  border-bottom: 1px solid var(--gold-dim);
+  padding-bottom: 16px;
+}
+
+.sidebar-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sidebar-lbl {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.sidebar-val {
+  font-size: 1.05rem;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.mt-lg {
+  margin-top: 16px;
+}
+
+@media (max-width: 900px) {
+  .profile-header-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    text-align: center;
+  }
+
+  .profile-avatar-large {
+    max-width: 200px;
+    margin: 0 auto;
+  }
+
+  .profile-meta-top, .profile-stats-row, .profile-actions {
+    justify-content: center;
+  }
+
+  .profile-content-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .profile-sidebar {
+    position: static;
+  }
+}
