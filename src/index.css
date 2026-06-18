@@ -28,9 +28,12 @@
   --glow-base:   rgba(59, 130, 246, 0.15);
   --glow-strong: rgba(56, 189, 248, 0.35);
 
-  /* ── Gold Accent (Restricted to badges/ratings only) ── */
-  --gold:        #D4AF37;
-  --gold-soft:   #E8C766;
+  /* ── Gold Accent (DocCare Luxury Particle System) ── */
+  --gold:          #D4AF37;
+  --gold-soft:     #E6C56A;
+  --gold-muted:    rgba(212,175,55,0.8);
+  --gold-glow:     rgba(212,175,55,0.4);
+  --gold-ambient:  rgba(212,175,55,0.08);
 
   /* ── Text ── */
   --white:       #FFFFFF;
@@ -112,17 +115,7 @@ html.lenis { height: auto; }
   display: flex;
   flex-direction: column;
   isolation: isolate;
-  background: radial-gradient(
-    circle at 20% 20%,
-    rgba(59,130,246,0.12),
-    transparent 35%
-  ),
-  radial-gradient(
-    circle at 80% 70%,
-    rgba(96,165,250,0.08),
-    transparent 40%
-  ),
-  #000000 !important;
+  background: transparent;
 }
 
 /* ── Selection ── */
@@ -167,8 +160,11 @@ img { max-width: 100%; display: block; }
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb {
-  background: rgba(59, 130, 246, 0.3);
+  background: rgba(212, 175, 55, 0.25);
   border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(212, 175, 55, 0.45);
 }
 
 /* ── Reduced motion ── */
