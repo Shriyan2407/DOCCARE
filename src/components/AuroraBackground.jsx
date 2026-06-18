@@ -8,8 +8,8 @@ const AuroraBackground = () => {
   const [particles, setParticles] = useState([]);
 
   useEffect(() => {
-    // Generate 75 premium floating particles
-    const newParticles = Array.from({ length: 75 }).map((_, i) => {
+    // Generate 25 premium floating particles (Optimized)
+    const newParticles = Array.from({ length: 25 }).map((_, i) => {
       // Occasional massive particles
       const isGiant = Math.random() > 0.9;
       const size = isGiant ? Math.floor(Math.random() * 10 + 20) : Math.floor(Math.random() * 8 + 4);
@@ -137,12 +137,13 @@ const AuroraBackground = () => {
             floatUp linear infinite,
             twinkle ease-in-out infinite alternate;
           will-change: transform, opacity;
+          transform: translateZ(0); /* Force GPU acceleration */
         }
         
         @keyframes floatUp {
-          0% { transform: translateY(110vh) translateX(0); }
-          50% { transform: translateY(40vh) translateX(20px); }
-          100% { transform: translateY(-10vh) translateX(-20px); }
+          0% { transform: translateY(110vh) translateX(0) translateZ(0); }
+          50% { transform: translateY(40vh) translateX(20px) translateZ(0); }
+          100% { transform: translateY(-10vh) translateX(-20px) translateZ(0); }
         }
         
         @keyframes twinkle {

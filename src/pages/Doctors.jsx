@@ -40,16 +40,13 @@ const Doctors = () => {
         transition={{ duration: 0.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
       >
         <div className="grid grid-cols-2" style={{ gap: '1rem', alignItems: 'center' }}>
-          <div style={{ position: 'relative' }}>
+          <div style={{ display: 'flex', alignItems: 'center', background: 'var(--bg-card)', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.1)', padding: '0 1rem', overflow: 'hidden' }}>
             <Search
               size={17}
               style={{
-                position: 'absolute',
-                left: '1rem',
-                top: '50%',
-                transform: 'translateY(-50%)',
                 color: '#64748b',
-                pointerEvents: 'none',
+                marginRight: '0.75rem',
+                flexShrink: 0,
               }}
             />
             <input
@@ -59,20 +56,16 @@ const Doctors = () => {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               id="doctor-search"
-              style={{ paddingLeft: '2.75rem' }}
+              style={{ border: 'none', background: 'transparent', padding: '1rem 0', width: '100%' }}
             />
           </div>
-          <div style={{ position: 'relative' }}>
+          <div style={{ display: 'flex', alignItems: 'center', background: 'var(--bg-card)', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.1)', padding: '0 1rem', overflow: 'hidden' }}>
             <SlidersHorizontal
               size={17}
               style={{
-                position: 'absolute',
-                left: '1rem',
-                top: '50%',
-                transform: 'translateY(-50%)',
                 color: '#64748b',
-                pointerEvents: 'none',
-                zIndex: 1,
+                marginRight: '0.75rem',
+                flexShrink: 0,
               }}
             />
             <select
@@ -80,7 +73,7 @@ const Doctors = () => {
               value={specialtyFilter}
               onChange={(e) => setSpecialtyFilter(e.target.value)}
               id="specialty-filter"
-              style={{ paddingLeft: '2.75rem' }}
+              style={{ border: 'none', background: 'transparent', padding: '1rem 0', width: '100%', cursor: 'pointer' }}
             >
               <option value="">All Specialties</option>
               {specialties.map((spec) => (

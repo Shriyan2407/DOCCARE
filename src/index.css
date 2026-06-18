@@ -5,10 +5,10 @@
 
 :root {
   /* ── Typography ── */
-  --font-display:  'Clash Display', 'Satoshi', sans-serif;
-  --font-heading:  'Satoshi', 'Inter', sans-serif;
-  --font-body:     'Inter', system-ui, sans-serif;
-  --font-numbers:  'Space Grotesk', 'Inter', sans-serif;
+  --font-display:  'Clash Display', sans-serif;
+  --font-heading:  'Clash Display', sans-serif;
+  --font-body:     'Inter', sans-serif;
+  --font-numbers:  'Space Grotesk', sans-serif;
 
   /* ── Ultra Dark Palette (OLED Black) ── */
   --void:        #000000;

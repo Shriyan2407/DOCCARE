@@ -37,7 +37,7 @@ const PageTransition = ({ children }) => {
       animate="animate"
       exit="exit"
       variants={pageVariants}
-      style={{ width: '100%', minHeight: '100vh' }}
+      style={{ width: '100%' }}
     >
       {children}
     </motion.div>

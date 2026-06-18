@@ -70,14 +70,14 @@ const Footer = () => {
               </span>
             </div>
             <p style={{
-              color: '#52525B',
+              color: 'var(--text-4)', /* Improved contrast from #52525B to #94A3B8 */
               fontSize: '0.875rem',
               lineHeight: 1.75,
               maxWidth: '260px',
               margin: '0 0 1.75rem',
-              fontFamily: 'Inter, sans-serif',
+              fontFamily: 'var(--font-body)',
             }}>
-              The world's most premium AI-powered healthcare platform. Built for those who accept nothing less than extraordinary.
+              Healthcare Without Compromise. The world's most premium AI-powered healthcare platform.
             </p>
 
             {/* Social */}
@@ -103,17 +103,17 @@ const Footer = () => {
                     transition: 'color 0.3s ease, background 0.3s ease, border-color 0.3s ease',
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.color = '#60A5FA';
-                    e.currentTarget.style.background = 'rgba(59,130,246,0.1)';
-                    e.currentTarget.style.borderColor = 'rgba(59,130,246,0.3)';
+                    e.currentTarget.style.color = '#FFFFFF';
+                    e.currentTarget.style.background = 'rgba(59,130,246,0.15)';
+                    e.currentTarget.style.borderColor = 'rgba(59,130,246,0.4)';
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.color = '#52525B';
+                    e.currentTarget.style.color = 'var(--text-4)';
                     e.currentTarget.style.background = 'rgba(255,255,255,0.03)';
                     e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)';
                   }}
                 >
-                  <Icon size={15} />
+                  <Icon size={16} />
                 </motion.button>
               ))}
             </div>
@@ -123,13 +123,13 @@ const Footer = () => {
           {navColumns.map((col) => (
             <div key={col.heading}>
               <div style={{
-                fontSize: '0.65rem',
+                fontSize: '0.75rem',
                 fontWeight: 700,
                 textTransform: 'uppercase',
-                letterSpacing: '0.14em',
-                color: '#3F3F46',
+                letterSpacing: '0.1em',
+                color: 'var(--text-1)',
                 marginBottom: '1.25rem',
-                fontFamily: 'Inter, sans-serif',
+                fontFamily: 'var(--font-heading)',
               }}>
                 {col.heading}
               </div>
@@ -139,14 +139,14 @@ const Footer = () => {
                     <Link
                       to={to}
                       style={{
-                        color: '#52525B',
+                        color: 'var(--text-4)',
                         fontSize: '0.875rem',
                         transition: 'color 0.2s ease',
                         display: 'inline-block',
-                        fontFamily: 'Inter, sans-serif',
+                        fontFamily: 'var(--font-body)',
                       }}
-                      onMouseEnter={(e) => e.currentTarget.style.color = '#60A5FA'}
-                      onMouseLeave={(e) => e.currentTarget.style.color = '#52525B'}
+                      onMouseEnter={(e) => e.currentTarget.style.color = 'var(--white)'}
+                      onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-4)'}
                     >
                       {label}
                     </Link>
@@ -161,20 +161,20 @@ const Footer = () => {
         <div className="footer-divider" />
 
         {/* Bottom */}
-        <div className="footer-bottom">
-          <p className="footer-copyright">
-            © {new Date().getFullYear()} MediCare Ultra Luxury Healthcare. All rights reserved.
+        <div className="footer-bottom" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '2rem', flexWrap: 'wrap', gap: '1rem' }}>
+          <p className="footer-copyright" style={{ color: 'var(--text-5)', fontSize: '0.875rem' }}>
+            © {new Date().getFullYear()} DocCare. All rights reserved.
           </p>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: '#3F3F46', fontSize: '0.78rem', fontFamily: 'Inter, sans-serif' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: 'var(--text-5)', fontSize: '0.875rem', fontFamily: 'var(--font-body)' }}>
             <span>Crafted with</span>
-            <Heart size={11} fill="#3B82F6" color="#3B82F6" style={{ animation: 'heartbeat 2s ease-in-out infinite' }} />
+            <Heart size={13} fill="#3B82F6" color="#3B82F6" style={{ animation: 'heartbeat 2s ease-in-out infinite' }} />
             <span>for exceptional care</span>
           </div>
-          <div style={{ display: 'flex', gap: '1.5rem' }}>
+          <div style={{ display: 'flex', gap: '2rem' }}>
             {['Privacy', 'Terms', 'HIPAA'].map((item) => (
-              <a key={item} href="#" style={{ color: '#3F3F46', fontSize: '0.78rem', fontFamily: 'Inter, sans-serif', transition: 'color 0.2s ease' }}
-                onMouseEnter={(e) => e.currentTarget.style.color = '#60A5FA'}
-                onMouseLeave={(e) => e.currentTarget.style.color = '#3F3F46'}
+              <a key={item} href="#" style={{ color: 'var(--text-5)', fontSize: '0.875rem', fontFamily: 'var(--font-body)', transition: 'color 0.2s ease' }}
+                onMouseEnter={(e) => e.currentTarget.style.color = 'var(--white)'}
+                onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-5)'}
               >
                 {item}
               </a>
