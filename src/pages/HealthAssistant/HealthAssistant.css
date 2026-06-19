@@ -1,0 +1,209 @@
+.health-assistant-page {
+  min-height: 100vh;
+  padding-top: 120px;
+  padding-bottom: 80px;
+  background-color: #000000;
+  color: #FFFFFF;
+}
+
+.ha-hero {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 48px;
+}
+
+.ha-title {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.ha-subtitle {
+  color: #A1A1AA;
+}
+
+.ha-input-container {
+  max-width: 700px;
+  margin: 0 auto 48px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.ha-textarea {
+  width: 100%;
+  min-height: 160px;
+  background: transparent;
+  border: none;
+  color: #FFFFFF;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  resize: vertical;
+  outline: none;
+}
+
+.ha-textarea::placeholder {
+  color: #A1A1AA;
+  opacity: 0.5;
+}
+
+.ha-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 24px;
+}
+
+.ha-analyze-btn {
+  min-width: 180px;
+}
+
+.ha-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 16px;
+  margin: 48px 0;
+  color: #D4AF37;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.ha-pulse {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(212, 175, 55, 0.2);
+  border: 2px solid #D4AF37;
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+  animation: pulse-glow 1.5s infinite alternate ease-in-out;
+}
+
+@keyframes pulse-glow {
+  0% { transform: scale(0.9); opacity: 0.6; box-shadow: 0 0 10px rgba(212, 175, 55, 0.2); }
+  100% { transform: scale(1.1); opacity: 1; box-shadow: 0 0 30px rgba(212, 175, 55, 0.8); }
+}
+
+.ha-error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #ef4444;
+  padding: 16px 24px;
+  border-radius: 12px;
+  max-width: 500px;
+  margin: 0 auto 48px;
+}
+
+/* Result Grid */
+.ha-result-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.ha-card {
+  background: rgba(10, 10, 10, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 24px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+}
+
+.ha-card:hover {
+  border-color: rgba(212, 175, 55, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.ha-card-causes { grid-column: span 2; }
+.ha-card-steps { grid-column: span 2; }
+
+.ha-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.ha-icon {
+  color: #D4AF37;
+}
+
+.ha-icon-alert {
+  color: #ef4444;
+}
+
+.ha-card-header h3 {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #FFFFFF;
+  margin: 0;
+}
+
+.ha-card-body p {
+  color: #A1A1AA;
+  line-height: 1.6;
+  white-space: pre-line;
+  margin: 0;
+}
+
+.ha-urgency-text {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #D4AF37 !important;
+}
+
+.ha-urgency-text.ha-high {
+  color: #ef4444 !important;
+}
+
+.specialist-action-btn {
+  margin-top: 16px;
+  background: rgba(212, 175, 55, 0.1);
+  color: #D4AF37;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.specialist-action-btn:hover {
+  background: #D4AF37;
+  color: #000000;
+}
+
+@media (max-width: 768px) {
+  .ha-result-grid {
+    grid-template-columns: 1fr;
+  }
+  .ha-card {
+    grid-column: span 1 !important;
+  }
+  .ha-actions {
+    flex-direction: column;
+  }
+  .ha-analyze-btn {
+    width: 100%;
+  }
+}

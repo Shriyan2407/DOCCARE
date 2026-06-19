@@ -40,7 +40,7 @@ const MagneticWrapper = ({ children, intensity = 0.15 }) => {
 const navTabs = [
   { title: 'Home', href: '/' },
   { title: 'Services', href: '/#services' },
-  { title: 'AI Health', href: '/#ai' },
+  { title: 'Assistant', href: '/health-assistant' },
   { title: 'Specialists', href: '/specialists' },
   { title: 'Insights', href: '/#insights' },
 ];

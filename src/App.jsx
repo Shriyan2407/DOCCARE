@@ -10,6 +10,7 @@ import DoctorProfile from './pages/DoctorProfile/DoctorProfile';
 import BookingFlow from './pages/BookingFlow/BookingFlow';
 import Dashboard from './pages/Dashboard/Dashboard';
 import HealthRecords from './pages/HealthRecords/HealthRecords';
+import HealthAssistant from './pages/HealthAssistant/HealthAssistant';
 import './App.css';
 
 import { AnimatePresence, motion } from 'framer-motion';
@@ -35,6 +36,7 @@ const AnimatedRoutes = () => {
         <Route path="/book/:doctorId" element={<PageTransition><BookingFlow /></PageTransition>} />
         <Route path="/dashboard" element={<PageTransition><Dashboard /></PageTransition>} />
         <Route path="/records" element={<PageTransition><HealthRecords /></PageTransition>} />
+        <Route path="/health-assistant" element={<PageTransition><HealthAssistant /></PageTransition>} />
       </Routes>
     </AnimatePresence>
   );

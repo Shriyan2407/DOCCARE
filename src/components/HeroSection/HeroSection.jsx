@@ -39,13 +39,6 @@ const HeroSection = () => {
             {/* ── LEFT: Brand content ── */}
             <div className="hero-left">
 
-              <div className="hero-badge animate-fade-in-up stagger-1">
-                <span className="status-dot online" />
-                <span>AI-Powered Healthcare OS</span>
-                <span className="hero-badge-sep">·</span>
-                <span className="text-gold">Est. 2026</span>
-              </div>
-
               <div className="hero-wordmark animate-fade-in-up stagger-2">
                 <span className="hero-wordmark-doc">DOC</span>
                 <span className="hero-wordmark-care">CARE</span>

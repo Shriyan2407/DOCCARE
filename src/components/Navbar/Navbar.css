@@ -21,8 +21,9 @@
 .navbar-glass-layer {
   position: absolute;
   inset: 0;
-  background: rgba(10, 10, 10, 0.85);
-  border: 1px solid rgba(212, 175, 55, 0.15);
+  background: rgba(0, 0, 0, 0.90);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.15), inset 0 0 10px rgba(212, 175, 55, 0.05);
   border-radius: inherit;
   z-index: -2;
 }
@@ -84,12 +85,12 @@
 }
 
 /* ============================================
-   NAVIGATION LINKS & APPLE PILL
+   NAVIGATION LINKS & APPLE PILL -> LUXURY HIGHLIGHT
    ============================================ */
 .navbar-links {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 32px;
   flex: 1;
   justify-content: center;
 }
@@ -98,47 +99,41 @@
   font-family: var(--font-body);
   font-size: 0.95rem;
   font-weight: 500;
-  color: #FFFFFF;
+  color: #A1A1AA;
   text-decoration: none;
-  padding: 10px 20px;
+  padding: 10px 16px;
   border-radius: 12px;
   position: relative;
-  transition: color 0.3s ease;
+  transition: color 0.3s ease, transform 0.3s ease;
   cursor: pointer;
+  display: inline-block;
 }
 
 .nav-link-3d:hover {
-  color: #D4AF37;
+  color: #FFFFFF;
+  transform: translateY(-2px);
 }
 
-/* Active Apple Pill Indicator */
+/* Active Elegant Gold Highlight */
 .nav-active-pill {
   position: absolute;
-  inset: 0;
-  background: rgba(212, 175, 55, 0.1);
-  border: 1px solid rgba(212, 175, 55, 0.3);
-  border-radius: 12px;
-  z-index: 0;
-}
-
-.nav-active-pill-glow {
-  position: absolute;
-  bottom: -2px;
+  bottom: 4px;
   left: 20%;
   right: 20%;
   height: 2px;
   background: #D4AF37;
-  box-shadow: 0 -4px 12px rgba(212, 175, 55, 0.8);
   border-radius: 2px;
+  z-index: 0;
+  box-shadow: 0 -2px 10px rgba(212, 175, 55, 0.6);
+}
+
+.nav-active-pill-glow {
+  display: none;
 }
 
 /* Hover Soft Glow */
 .nav-hover-glow {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at center, rgba(255,255,255,0.08) 0%, transparent 70%);
-  border-radius: 12px;
-  z-index: 0;
+  display: none;
 }
 
 /* ============================================
