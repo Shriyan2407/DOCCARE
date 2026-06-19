@@ -1,11 +1,11 @@
 /**
- * Spotlight - Ambient glow SVG for premium section backgrounds.
- * Usage: Place inside a relative/overflow-hidden container.
+ * Spotlight — Aceternity-style SVG spotlight with animate-spotlight CSS animation.
+ * Drop inside any relative/overflow-hidden container.
  */
-export function Spotlight({ className, fill = 'white' }) {
+export function Spotlight({ className = '', fill = 'white' }) {
   return (
     <svg
-      className={`spotlight-svg ${className || ''}`}
+      className={`spotlight-svg ${className}`}
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 3787 2842"
       fill="none"
