@@ -1,5 +1,6 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import { doctors } from '../../data/doctors';
 import './SpecialistsPage.css';
 
@@ -42,14 +43,42 @@ const DoctorAvatar = ({ src, name }) => {
 };
 
 const SpecialistsPage = () => {
+  const [searchParams] = useSearchParams();
+  const specMap = {
+    'pediatrics': 'Pediatrics',
+    'mental-wellness': 'Psychiatry',
+    'telemedicine': 'All', 
+    'cardiology': 'Cardiology Specialist',
+    'neurology': 'Neurology'
+  };
+  const initSpec = searchParams.get('specialty');
+  const mappedSpec = initSpec ? (specMap[initSpec.toLowerCase()] || initSpec) : 'All';
+
   const [searchTerm, setSearchTerm] = useState('');
-  const [filter, setFilter] = useState('All');
+  const [specialtyFilter, setSpecialtyFilter] = useState(mappedSpec);
+  const [experienceFilter, setExperienceFilter] = useState('All');
+  const [availabilityFilter, setAvailabilityFilter] = useState('All');
+  const [languageFilter, setLanguageFilter] = useState('All');
+  const [modeFilter, setModeFilter] = useState('All');
 
   const filteredDoctors = doctors.filter(doc => {
     const matchesSearch = doc.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
-                          doc.specialization.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesFilter = filter === 'All' || doc.specialization === filter || (filter === 'Available Today' && doc.availability === 'Available Today');
-    return matchesSearch && matchesFilter;
+                          doc.specialization.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                          doc.hospital.toLowerCase().includes(searchTerm.toLowerCase());
+                          
+    const matchesSpecialty = specialtyFilter === 'All' || doc.specialization === specialtyFilter;
+    
+    let matchesExp = true;
+    if (experienceFilter === '10+ Years') matchesExp = parseInt(doc.experience) >= 10;
+    if (experienceFilter === '15+ Years') matchesExp = parseInt(doc.experience) >= 15;
+
+    const matchesAvail = availabilityFilter === 'All' || doc.availability.includes(availabilityFilter);
+    const matchesLang = languageFilter === 'All' || doc.languages.includes(languageFilter);
+    
+    // For demo purposes, we assume doctors are available both modes, except if specifically tagged Telemedicine
+    const matchesMode = modeFilter === 'All' ? true : modeFilter === 'Online' ? true : true; 
+
+    return matchesSearch && matchesSpecialty && matchesExp && matchesAvail && matchesLang && matchesMode;
   });
 
   return (
@@ -78,78 +107,120 @@ const SpecialistsPage = () => {
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
             </div>
-            <select className="search-select" value={filter} onChange={(e) => setFilter(e.target.value)}>
-              <option value="All">All Specialties</option>
-              <option value="Cardiology Specialist">Cardiology</option>
-              <option value="Neurology">Neurology</option>
-              <option value="Oncology">Oncology</option>
-              <option value="Orthopedics">Orthopedics</option>
-              <option value="Endocrinology">Endocrinology</option>
-              <option value="Available Today">Available Today</option>
-            </select>
+            <div className="advanced-filters-grid">
+              <select className="search-select" value={specialtyFilter} onChange={(e) => setSpecialtyFilter(e.target.value)}>
+                <option value="All">All Specialties</option>
+                <option value="Cardiology Specialist">Cardiology</option>
+                <option value="Neurology">Neurology</option>
+                <option value="Oncology">Oncology</option>
+                <option value="Orthopedics">Orthopedics</option>
+                <option value="Endocrinology">Endocrinology</option>
+                <option value="Psychiatry">Psychiatry</option>
+                <option value="Dermatology">Dermatology</option>
+                <option value="Pediatrics">Pediatrics</option>
+              </select>
+              
+              <select className="search-select" value={experienceFilter} onChange={(e) => setExperienceFilter(e.target.value)}>
+                <option value="All">Any Experience</option>
+                <option value="10+ Years">10+ Years</option>
+                <option value="15+ Years">15+ Years</option>
+              </select>
+
+              <select className="search-select" value={availabilityFilter} onChange={(e) => setAvailabilityFilter(e.target.value)}>
+                <option value="All">Any Availability</option>
+                <option value="Today">Available Today</option>
+                <option value="Tomorrow">Available Tomorrow</option>
+                <option value="Next Week">Next Week</option>
+              </select>
+
+              <select className="search-select" value={languageFilter} onChange={(e) => setLanguageFilter(e.target.value)}>
+                <option value="All">All Languages</option>
+                <option value="English">English</option>
+                <option value="Spanish">Spanish</option>
+                <option value="French">French</option>
+                <option value="Mandarin">Mandarin</option>
+                <option value="Russian">Russian</option>
+              </select>
+
+              <select className="search-select" value={modeFilter} onChange={(e) => setModeFilter(e.target.value)}>
+                <option value="All">Online & Offline</option>
+                <option value="Online">Online / Telemedicine</option>
+                <option value="Offline">Offline / Clinic</option>
+              </select>
+            </div>
           </div>
         </div>
       </div>
 
-      <div className="container specialists-grid">
-        {filteredDoctors.map((doc, idx) => (
-          <div className="specialist-card-rich glass" key={doc.id} style={{ animationDelay: `${idx * 0.1}s` }}>
-            <div className="card-header">
-              <div className="doc-avatar-container">
-                <DoctorAvatar src={doc.avatar} name={doc.name} />
-                {doc.verified && (
-                  <div className="doc-verified-badge" title="Verified Professional">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="#D4AF37">
-                      <path d="M12 2L15 8L22 9L17 14L18.5 21L12 17.5L5.5 21L7 14L2 9L9 8L12 2Z" />
-                    </svg>
+      <motion.div layout className="container specialists-grid">
+        <AnimatePresence>
+          {filteredDoctors.map((doc, idx) => (
+            <motion.div 
+              layout
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ duration: 0.4 }}
+              className="specialist-card-rich glass" 
+              key={doc.id}
+            >
+              <div className="card-header">
+                <div className="doc-avatar-container">
+                  <DoctorAvatar src={doc.avatar} name={doc.name} />
+                  {doc.verified && (
+                    <div className="doc-verified-badge" title="Verified Professional">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="#D4AF37">
+                        <path d="M12 2L15 8L22 9L17 14L18.5 21L12 17.5L5.5 21L7 14L2 9L9 8L12 2Z" />
+                      </svg>
+                    </div>
+                  )}
+                </div>
+                <div className="doc-meta-top">
+                  <div className="doc-rating">
+                    <span className="star">★</span> {doc.rating} <span>({doc.reviews})</span>
                   </div>
-                )}
-              </div>
-              <div className="doc-meta-top">
-                <div className="doc-rating">
-                  <span className="star">★</span> {doc.rating} <span>({doc.reviews})</span>
-                </div>
-                <div className={`doc-status ${doc.availability.includes('Today') ? 'status-green' : 'status-amber'}`}>
-                  {doc.availability}
-                </div>
-              </div>
-            </div>
-
-            <div className="card-body">
-              <h3 className="doc-name">{doc.name}</h3>
-              <p className="doc-spec text-gold">{doc.specialization}</p>
-              <p className="doc-hospital">{doc.hospital}</p>
-              
-              <div className="doc-stats">
-                <div className="doc-stat">
-                  <span className="stat-lbl">Experience</span>
-                  <span className="stat-val">{doc.experience}</span>
-                </div>
-                <div className="doc-stat">
-                  <span className="stat-lbl">Consult Fee</span>
-                  <span className="stat-val">{doc.fee}</span>
+                  <div className={`doc-status ${doc.availability.includes('Today') ? 'status-green' : 'status-amber'}`}>
+                    {doc.availability}
+                  </div>
                 </div>
               </div>
 
-              <div className="doc-languages">
-                <span className="stat-lbl">Languages: </span>
-                {doc.languages.join(', ')}
+              <div className="card-body">
+                <h3 className="doc-name">{doc.name}</h3>
+                <p className="doc-spec text-gold">{doc.specialization}</p>
+                <p className="doc-hospital">{doc.hospital}</p>
+                
+                <div className="doc-stats">
+                  <div className="doc-stat">
+                    <span className="stat-lbl">Experience</span>
+                    <span className="stat-val">{doc.experience}</span>
+                  </div>
+                  <div className="doc-stat">
+                    <span className="stat-lbl">Consult Fee</span>
+                    <span className="stat-val">{doc.fee}</span>
+                  </div>
+                </div>
+
+                <div className="doc-languages">
+                  <span className="stat-lbl">Languages: </span>
+                  {doc.languages.join(', ')}
+                </div>
+
+                <p className="doc-bio-short">{doc.biography.substring(0, 100)}...</p>
               </div>
 
-              <p className="doc-bio-short">{doc.biography.substring(0, 100)}...</p>
-            </div>
-
-            <div className="card-footer">
-              <Link to={`/specialists/${doc.id}`} className="btn btn-outline btn-sm" style={{flex: 1}}>
-                View Profile
-              </Link>
-              <Link to={`/book/${doc.id}`} className="btn btn-gold btn-sm" style={{flex: 1}}>
-                Book Now
-              </Link>
-            </div>
-          </div>
-        ))}
-      </div>
+              <div className="card-footer">
+                <Link to={`/specialists/${doc.id}`} className="btn btn-outline btn-sm" style={{flex: 1, textAlign: 'center'}}>
+                  View Profile
+                </Link>
+                <Link to={`/book/${doc.id}`} className="btn btn-gold btn-sm" style={{flex: 1, textAlign: 'center'}}>
+                  Book Now
+                </Link>
+              </div>
+            </motion.div>
+          ))}
+        </AnimatePresence>
+      </motion.div>
     </div>
   );
 };

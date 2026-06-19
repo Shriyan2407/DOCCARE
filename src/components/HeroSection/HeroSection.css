@@ -1,5 +1,5 @@
 /* ============================================
-   HERO SECTION — GLSLHills Edition
+   HERO SECTION — Spline Split Layout
    ============================================ */
 
 .hero-section {
@@ -14,76 +14,78 @@
   background: #000000;
 }
 
-/* ── Canvas layer ─────────────────────────────────────────────── */
-.hero-hills-canvas {
+/* ── Spotlight SVG ─────────────────────────────────────────────── */
+.spotlight-svg {
   position: absolute;
-  inset: 0;
-  z-index: 0;
-  /* Slightly push the mesh down so it reads as distant hills */
-  transform: translateY(8%);
+  z-index: 1;
+  height: 169%;
+  width: 138%;
+  opacity: 0;
+  pointer-events: none;
+  animation: spotlight-reveal 1.2s ease forwards 0.5s;
+}
+
+@keyframes spotlight-reveal {
+  to { opacity: 1; }
+}
+
+.hero-spotlight {
+  top: -40%;
+  left: -20%;
 }
 
 /* ── Depth / vignette layers ──────────────────────────────────── */
-
-/* Radial vignette — darkens edges so DOCCARE pops from center */
 .hero-vignette {
   position: absolute;
   inset: 0;
   z-index: 1;
   background: radial-gradient(
-    ellipse 80% 80% at 50% 50%,
+    ellipse 100% 100% at 30% 50%,
     transparent 20%,
-    rgba(0, 0, 0, 0.55) 60%,
-    rgba(0, 0, 0, 0.85) 100%
+    rgba(0, 0, 0, 0.4) 65%,
+    rgba(0, 0, 0, 0.8) 100%
   );
   pointer-events: none;
 }
 
-/* Floor fade — seals the bottom of the mesh into pure black */
 .hero-gradient-floor {
   position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  left: 0; right: 0; bottom: 0;
   height: 38%;
   z-index: 2;
-  background: linear-gradient(
-    to top,
-    #000000 0%,
-    rgba(0, 0, 0, 0.85) 40%,
-    transparent 100%
-  );
+  background: linear-gradient(to top, #000000 0%, rgba(0,0,0,0.85) 40%, transparent 100%);
   pointer-events: none;
 }
 
-/* Top fade — blends into navbar */
 .hero-gradient-top {
   position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
+  left: 0; right: 0; top: 0;
   height: 22%;
   z-index: 2;
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.7) 0%,
-    transparent 100%
-  );
+  background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, transparent 100%);
   pointer-events: none;
 }
 
-/* ── Center brand lockup ──────────────────────────────────────── */
-.hero-brand-lockup {
+/* ── SPLIT LAYOUT ─────────────────────────────────────────────── */
+.hero-split-layout {
   position: relative;
   z-index: 10;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  width: 100%;
+  max-width: 1400px;
+  min-height: calc(100vh - 80px); /* leave room for metrics strip */
+  padding: 120px 80px 160px 80px;
+  gap: 60px;
+}
+
+/* ── LEFT ─────────────────────────────────────────────────────── */
+.hero-left {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 0;
-  padding: 120px 24px 180px; /* bottom padding makes room for metrics strip */
-  max-width: 900px;
-  width: 100%;
+  align-items: flex-start;
+  text-align: left;
 }
 
 /* Badge */
@@ -100,32 +102,27 @@
   font-weight: 500;
   color: #B0B0B0;
   letter-spacing: 0.03em;
-  margin-bottom: 40px;
+  margin-bottom: 32px;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 }
 
-.hero-badge-sep {
-  color: rgba(212, 175, 55, 0.35);
-}
+.hero-badge-sep { color: rgba(212, 175, 55, 0.35); }
 
 /* Wordmark */
 .hero-wordmark {
   font-family: var(--font-heading);
-  font-size: clamp(7rem, 10vw, 11rem);
+  font-size: clamp(5rem, 8vw, 9rem);
   font-weight: 900;
   line-height: 0.85;
   letter-spacing: -0.08em;
   display: flex;
   align-items: baseline;
-  margin-bottom: 28px;
-  /* Subtle text shadow for depth against the hills */
+  margin-bottom: 24px;
   filter: drop-shadow(0 4px 40px rgba(0, 0, 0, 0.8));
 }
 
-.hero-wordmark-doc {
-  color: #FFFFFF;
-}
+.hero-wordmark-doc  { color: #FFFFFF; }
 
 .hero-wordmark-care {
   background: linear-gradient(135deg, #D4AF37 0%, #E6C56A 45%, #C9A030 100%);
@@ -142,12 +139,12 @@
   100% { background-position: 0% 50%; }
 }
 
-/* Gold rule row */
+/* Gold rule */
 .hero-rule {
   display: flex;
   align-items: center;
   gap: 14px;
-  margin-bottom: 28px;
+  margin-bottom: 24px;
 }
 
 .hero-rule-line {
@@ -160,31 +157,154 @@
 /* Quote */
 .hero-quote {
   font-family: var(--font-heading);
-  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
   color: var(--text-primary);
   margin-bottom: 16px;
   line-height: 1.2;
 }
 
-/* Sub-quote (body copy) */
+/* Sub-quote */
 .hero-sub-quote {
   font-weight: 400;
   line-height: 1.7;
   color: rgba(176, 176, 176, 0.85);
-  max-width: 620px;
+  max-width: 520px;
   margin-bottom: 44px;
 }
 
-.hero-br {
-  display: block;
-}
+.hero-br { display: block; }
 
 /* CTAs */
 .hero-cta {
   display: flex;
   gap: 14px;
   flex-wrap: wrap;
+  margin-bottom: 32px;
+}
+
+/* Trust pills */
+.hero-trust-pills {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.trust-pill {
+  padding: 5px 14px;
+  border-radius: 100px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  font-size: 0.72rem;
+  color: #808080;
+  letter-spacing: 0.04em;
+}
+
+/* ── RIGHT — Spline ───────────────────────────────────────────── */
+.hero-right {
+  position: relative;
+  display: flex;
+  align-items: center;
   justify-content: center;
+  height: 100%;
+}
+
+.hero-spline-wrap {
+  position: relative;
+  width: 100%;
+  height: 700px;
+  border-radius: 24px;
+  overflow: hidden;
+  background: rgba(5,5,5,0.5);
+  border: 1px solid rgba(212,175,55,0.08);
+  box-shadow:
+    0 0 80px rgba(212,175,55,0.06),
+    inset 0 0 40px rgba(0,0,0,0.4);
+}
+
+/* Gold ambient ring */
+.hero-spline-ring {
+  position: absolute;
+  inset: -2px;
+  border-radius: 26px;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0%,
+    rgba(212,175,55,0.15) 20%,
+    transparent 40%,
+    rgba(212,175,55,0.08) 60%,
+    transparent 80%
+  );
+  animation: ring-spin 8s linear infinite;
+  z-index: 0;
+  pointer-events: none;
+}
+
+@keyframes ring-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Spline canvas itself */
+.hero-spline {
+  position: absolute;
+  inset: 2px;
+  border-radius: 22px;
+  z-index: 1;
+}
+
+/* Spline container from component */
+.spline-container {
+  width: 100%;
+  height: 100%;
+}
+
+.spline-canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Fallback */
+.hero-spline-fallback {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  background: radial-gradient(ellipse at center, rgba(212,175,55,0.04) 0%, transparent 70%);
+}
+
+.spline-fallback {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(ellipse at center, rgba(212,175,55,0.04) 0%, transparent 70%);
+}
+
+.spline-fallback-orb {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, rgba(212,175,55,0.25), rgba(212,175,55,0.05) 60%, transparent);
+  border: 1px solid rgba(212,175,55,0.15);
+  animation: orb-pulse 3s ease-in-out infinite;
+  box-shadow:
+    0 0 60px rgba(212,175,55,0.1),
+    inset 0 0 40px rgba(212,175,55,0.05);
+}
+
+@keyframes orb-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.05); opacity: 1; }
+}
+
+.spline-fallback-label {
+  font-size: 0.75rem;
+  color: rgba(212,175,55,0.4);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
 }
 
 /* ── Metrics strip ────────────────────────────────────────────── */
@@ -196,7 +316,7 @@
   z-index: 10;
   display: flex;
   justify-content: center;
-  background: rgba(5, 5, 5, 0.75);
+  background: rgba(5, 5, 5, 0.85);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-top: 1px solid rgba(212, 175, 55, 0.1);
@@ -245,9 +365,8 @@
 /* ── Scroll indicator ─────────────────────────────────────────── */
 .hero-scroll-indicator {
   position: absolute;
-  bottom: 90px; /* above metrics strip */
-  left: 50%;
-  transform: translateX(-50%);
+  bottom: 90px;
+  left: 80px;
   z-index: 10;
   display: flex;
   flex-direction: column;
@@ -275,7 +394,7 @@
   50%       { transform: translateY(5px); opacity: 0.4; }
 }
 
-/* ── Stagger fade-in animations ──────────────────────────────── */
+/* ── Stagger animations ───────────────────────────────────────── */
 .animate-fade-in-up {
   opacity: 0;
   animation: fade-in-up 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
@@ -290,18 +409,57 @@
 
 @keyframes fade-in-up {
   from { opacity: 0; transform: translateY(22px); }
-  to   { opacity: 1; transform: translateY(0);    }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 /* ── Responsive ───────────────────────────────────────────────── */
-@media (max-width: 768px) {
-  .hero-brand-lockup {
-    padding-bottom: 200px;
+@media (max-width: 1100px) {
+  .hero-split-layout {
+    grid-template-columns: 1fr;
+    padding: 140px 40px 180px;
+    text-align: center;
+    gap: 48px;
   }
 
-  .hero-br {
-    display: none;
+  .hero-left {
+    align-items: center;
+    text-align: center;
   }
+
+  .hero-right {
+    width: 100%;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  .hero-spline-wrap {
+    height: 420px;
+  }
+
+  .hero-scroll-indicator {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .hero-cta {
+    justify-content: center;
+  }
+
+  .hero-trust-pills {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-split-layout {
+    padding: 120px 24px 200px;
+  }
+
+  .hero-spline-wrap {
+    height: 320px;
+  }
+
+  .hero-br { display: none; }
 
   .hero-cta {
     flex-direction: column;
@@ -314,9 +472,7 @@
     justify-content: center;
   }
 
-  .hero-metrics-strip {
-    flex-wrap: wrap;
-  }
+  .hero-metrics-strip { flex-wrap: wrap; }
 
   .hero-metric-item {
     max-width: 50%;
@@ -324,18 +480,15 @@
   }
 
   .hero-metric-item:nth-child(2)::after,
-  .hero-metric-item:nth-child(4)::after {
-    display: none;
-  }
+  .hero-metric-item:nth-child(4)::after { display: none; }
 
   .hero-metric-item:nth-child(1),
   .hero-metric-item:nth-child(2) {
     border-bottom: 1px solid rgba(212, 175, 55, 0.08);
   }
 
-  .hero-rule-line {
-    width: 36px;
-  }
+  /* Hide Spline on small mobile for performance */
+  .hero-right { display: none; }
 }
 
 @media (max-width: 480px) {

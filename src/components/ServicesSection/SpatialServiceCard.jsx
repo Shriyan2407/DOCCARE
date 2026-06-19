@@ -1,10 +1,13 @@
 import { useRef, useState } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import './ServicesSection.css'; 
+import { Link } from 'react-router-dom';
+import { ServiceDetailsModal } from './ServiceDetailsModal';
+import './ServicesSection.css';
 
 export const SpatialServiceCard = ({ service, index }) => {
   const cardRef = useRef(null);
   const [hovered, setHovered] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -124,11 +127,18 @@ export const SpatialServiceCard = ({ service, index }) => {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: hovered ? 1 : 0.4, y: hovered ? 0 : 5 }}
           >
-            <button className="btn btn-gold btn-sm">Quick Book</button>
-            <button className="btn btn-ghost btn-sm">Learn More</button>
+            <Link to={`/book?specialty=${service.id}`} className="btn btn-gold btn-sm">Quick Book</Link>
+            <button className="btn btn-ghost btn-sm" onClick={() => setIsModalOpen(true)}>Learn More</button>
           </motion.div>
         </div>
       </motion.div>
+
+      {/* Render Modal Outside the 3D transforms */}
+      <ServiceDetailsModal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+        service={service} 
+      />
     </motion.div>
   );
 };

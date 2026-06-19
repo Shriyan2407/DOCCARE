@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
+import { useNavigate } from 'react-router-dom';
 import { Html, Float, Sphere, Stars, PerspectiveCamera } from '@react-three/drei';
 import { motion, AnimatePresence } from 'framer-motion';
 import * as THREE from 'three';
@@ -14,7 +15,7 @@ const departments = [
   { id: 'telemedicine', title: 'Telemedicine', count: '100+', wait: 'Instant', sat: '99%', pos: [-1.5, 0.5, 3.5] },
 ];
 
-const NodeHTML = ({ data, active, onClick }) => {
+const NodeHTML = ({ data, active, onClick, onAccess }) => {
   return (
     <motion.div
       className={`hub-node-html ${active ? 'active' : ''}`}
@@ -55,7 +56,11 @@ const NodeHTML = ({ data, active, onClick }) => {
               <span>Satisfaction</span>
               <strong className="text-gold">{data.sat}</strong>
             </div>
-            <button className="btn btn-gold btn-block" style={{ marginTop: '16px', padding: '8px', fontSize: '12px' }}>
+            <button 
+              className="btn btn-gold btn-block" 
+              style={{ marginTop: '16px', padding: '8px', fontSize: '12px' }}
+              onClick={(e) => { e.stopPropagation(); onAccess(); }}
+            >
               Access Department
             </button>
           </motion.div>
@@ -65,7 +70,7 @@ const NodeHTML = ({ data, active, onClick }) => {
   );
 };
 
-const HubNode = ({ data, activeId, setActiveId }) => {
+const HubNode = ({ data, activeId, setActiveId, onAccess }) => {
   const isActive = activeId === data.id;
   const ref = useRef();
   
@@ -101,6 +106,7 @@ const HubNode = ({ data, activeId, setActiveId }) => {
             data={data} 
             active={isActive} 
             onClick={() => setActiveId(isActive ? null : data.id)} 
+            onAccess={() => onAccess(data.id)}
           />
         </Html>
       </group>
@@ -165,6 +171,11 @@ const SceneRig = () => {
 
 export const SpecialistHub3D = () => {
   const [activeId, setActiveId] = useState(null);
+  const navigate = useNavigate();
+
+  const handleAccess = (id) => {
+    navigate(`/specialists?specialty=${id}`);
+  };
 
   return (
     <div className="hub-canvas-container">
@@ -183,6 +194,7 @@ export const SpecialistHub3D = () => {
             data={dept} 
             activeId={activeId} 
             setActiveId={setActiveId} 
+            onAccess={handleAccess}
           />
         ))}
         

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useSearchParams } from 'react-router-dom';
 import { doctors } from '../../data/doctors';
 import BookingConfigurator3D from '../../components/BookingConfigurator3D/BookingConfigurator3D';
 import './BookingFlow.css';
@@ -15,8 +15,20 @@ const STEPS = [
 
 const BookingFlow = () => {
   const { doctorId } = useParams();
+  const [searchParams] = useSearchParams();
   const initialDoc = doctorId ? doctors.find(d => d.id === doctorId) : null;
   
+  const specParam = searchParams.get('specialty');
+  const specMap = {
+    'pediatrics': 'Pediatrics',
+    'mental-health': 'Psychiatry',
+    'virtual-consultation': 'Telemedicine'
+  };
+  
+  const initialSpecialty = initialDoc 
+    ? initialDoc.specialization 
+    : (specMap[specParam?.toLowerCase()] || specParam || '');
+
   const [currentStep, setCurrentStep] = useState(initialDoc ? 3 : 0);
 
   // Form State
@@ -25,7 +37,7 @@ const BookingFlow = () => {
     lastName: '',
     email: '',
     phone: '',
-    specialty: initialDoc ? initialDoc.specialization : '',
+    specialty: initialSpecialty,
     doctorId: initialDoc ? initialDoc.id : '',
     date: '',
     time: ''
@@ -112,7 +124,7 @@ const BookingFlow = () => {
               <div className="step-panel animate-fade-in-up">
                 <h2 className="text-heading mb-xl">Select Specialty</h2>
                 <div className="specialty-grid">
-                  {['Cardiology Specialist', 'Neurology', 'Oncology', 'Orthopedics', 'Endocrinology', 'Psychiatry', 'Dermatology', 'Pediatrics'].map(spec => (
+                  {['Cardiology Specialist', 'Neurology', 'Oncology', 'Orthopedics', 'Endocrinology', 'Psychiatry', 'Dermatology', 'Pediatrics', 'Telemedicine'].map(spec => (
                     <button 
                       key={spec} 
                       className={`spec-btn ${formData.specialty === spec ? 'active' : ''}`}
