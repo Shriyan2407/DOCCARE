@@ -3,6 +3,44 @@ import { Link } from 'react-router-dom';
 import { doctors } from '../../data/doctors';
 import './SpecialistsPage.css';
 
+const DoctorAvatar = ({ src, name }) => {
+  const [status, setStatus] = useState('loading');
+
+  const getInitials = (nameStr) => {
+    return nameStr
+      .replace('Dr. ', '')
+      .split(' ')
+      .map(n => n[0])
+      .join('')
+      .substring(0, 2)
+      .toUpperCase();
+  };
+
+  return (
+    <div className="doc-avatar-wrap">
+      {status === 'loading' && <div className="avatar-skeleton"></div>}
+      {status === 'error' ? (
+        <div className="avatar-fallback">
+          <span className="avatar-initials">{getInitials(name)}</span>
+          <div className="avatar-icon-overlay">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2L15 8L22 9L17 14L18.5 21L12 17.5L5.5 21L7 14L2 9L9 8L12 2Z" />
+            </svg>
+          </div>
+        </div>
+      ) : (
+        <img
+          src={src}
+          alt={name}
+          className={`doc-avatar-img ${status === 'loaded' ? 'loaded' : 'hidden'}`}
+          onLoad={() => setStatus('loaded')}
+          onError={() => setStatus('error')}
+        />
+      )}
+    </div>
+  );
+};
+
 const SpecialistsPage = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filter, setFilter] = useState('All');
@@ -57,8 +95,8 @@ const SpecialistsPage = () => {
         {filteredDoctors.map((doc, idx) => (
           <div className="specialist-card-rich glass" key={doc.id} style={{ animationDelay: `${idx * 0.1}s` }}>
             <div className="card-header">
-              <div className="doc-avatar-wrap">
-                <img src={doc.avatar} alt={doc.name} className="doc-avatar-img" />
+              <div className="doc-avatar-container">
+                <DoctorAvatar src={doc.avatar} name={doc.name} />
                 {doc.verified && (
                   <div className="doc-verified-badge" title="Verified Professional">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="#D4AF37">
