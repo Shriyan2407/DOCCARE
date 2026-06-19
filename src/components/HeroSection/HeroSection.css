@@ -16,29 +16,54 @@
   overflow: hidden;
 }
 
-/* ── Depth fades ───────────────────────────────────────────────── */
+/* ── Layer 0: GLSLHills — fullscreen animated wireframe bg ──────── */
+.hero-hills-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  /* Push hills down slightly so crests are at bottom-center */
+  transform: translateY(6%);
+  opacity: 0.7;
+}
+
+/* ── Layer 1: Radial vignette — keeps black edges clean ─────────── */
+.hero-vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: radial-gradient(
+    ellipse 80% 80% at 50% 50%,
+    transparent 10%,
+    rgba(0, 0, 0, 0.45) 55%,
+    rgba(0, 0, 0, 0.80) 100%
+  );
+  pointer-events: none;
+}
+
+/* ── Depth fades ─────────────────────────────────────────────────── */
 .hero-gradient-floor {
   position: absolute;
   left: 0; right: 0; bottom: 0;
-  height: 30%;
-  z-index: 1;
-  background: linear-gradient(to top, #000000 0%, rgba(0,0,0,0.8) 50%, transparent 100%);
+  height: 35%;
+  z-index: 2;
+  background: linear-gradient(to top, #000000 0%, rgba(0,0,0,0.85) 50%, transparent 100%);
   pointer-events: none;
 }
 
 .hero-gradient-top {
   position: absolute;
   left: 0; right: 0; top: 0;
-  height: 20%;
-  z-index: 1;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, transparent 100%);
+  height: 22%;
+  z-index: 2;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, transparent 100%);
   pointer-events: none;
 }
 
 /* ── Outer container (full width padding) ──────────────────────── */
 .hero-container {
   position: relative;
-  z-index: 10;
+  z-index: 5;
   width: 100%;
   max-width: 1400px;
   padding: 96px 32px 160px;
@@ -47,19 +72,23 @@
   justify-content: center;
 }
 
-/* ── THE CARD — mirrors demo: bg-black/[0.96] ─────────────────── */
+/* ── THE CARD — semi-transparent so hills show behind ───────────── */
 .hero-card {
   width: 100%;
   height: 600px;
-  background: rgba(0, 0, 0, 0.96);
+  /* Slightly less opaque than 0.96 so the GLSL hills bleed through */
+  background: rgba(0, 0, 0, 0.82);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
   border-radius: 16px;
-  border: 1px solid rgba(212, 175, 55, 0.12);
+  border: 1px solid rgba(212, 175, 55, 0.15);
   position: relative;
   overflow: hidden;
   box-shadow:
-    0 0 0 1px rgba(212, 175, 55, 0.05),
-    0 32px 80px rgba(0, 0, 0, 0.8),
-    0 0 120px rgba(212, 175, 55, 0.04);
+    0 0 0 1px rgba(212, 175, 55, 0.06),
+    0 32px 80px rgba(0, 0, 0, 0.6),
+    0 0 140px rgba(212, 175, 55, 0.06),
+    inset 0 1px 0 rgba(212, 175, 55, 0.08);
 }
 
 /* ── Spotlight SVG (Aceternity) — animate-spotlight ──────────── */

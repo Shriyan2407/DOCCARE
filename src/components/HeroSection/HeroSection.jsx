@@ -1,24 +1,34 @@
 import { Link } from 'react-router-dom';
 import { SplineScene } from '@/components/ui/spline';
 import { Spotlight } from '@/components/ui/spotlight';
+import { GLSLHills } from '@/components/ui/glsl-hills';
 import './HeroSection.css';
 
 const HeroSection = () => {
   return (
     <section className="hero-section" id="overview">
 
-      {/* ── Depth overlays ── */}
+      {/* ── Layer 0: GLSL Hills — fullscreen wireframe background ── */}
+      <div className="hero-hills-bg" aria-hidden="true">
+        <GLSLHills
+          width="100%"
+          height="100%"
+          cameraZ={125}
+          planeSize={256}
+          speed={0.45}
+        />
+      </div>
+
+      {/* ── Layer 1: Depth vignettes to blend hills into black ── */}
+      <div className="hero-vignette" />
       <div className="hero-gradient-floor" />
       <div className="hero-gradient-top" />
 
-      {/* ──────────────────────────────────────────
-          HERO CARD — matches exact demo structure:
-          Card > Spotlight + flex(left | right)
-          ────────────────────────────────────────── */}
+      {/* ── Layer 2: Hero Card (Card + Spotlight + left | right Spline) ── */}
       <div className="hero-container">
         <div className="hero-card">
 
-          {/* Spotlight glow — positioned top-left per demo */}
+          {/* Aceternity Spotlight — gold glow, top-left */}
           <Spotlight
             className="hero-spotlight-pos"
             fill="rgba(212,175,55,0.9)"
@@ -92,7 +102,7 @@ const HeroSection = () => {
               </div>
             </div>
 
-            {/* ── RIGHT: Spline 3D scene ── */}
+            {/* ── RIGHT: Interactive Spline 3D robot/scene ── */}
             <div className="hero-right">
               <SplineScene
                 scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
@@ -100,11 +110,11 @@ const HeroSection = () => {
               />
             </div>
 
-          </div>{/* end hero-card-inner */}
-        </div>{/* end hero-card */}
-      </div>{/* end hero-container */}
+          </div>
+        </div>
+      </div>
 
-      {/* ── Bottom metrics strip ── */}
+      {/* ── Layer 3: Bottom metrics strip ── */}
       <div className="hero-metrics-strip animate-fade-in-up stagger-6">
         {[
           { value: '500+',    label: 'Verified Specialists' },
