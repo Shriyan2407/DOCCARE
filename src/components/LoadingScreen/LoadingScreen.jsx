@@ -1,7 +1,5 @@
-import { useEffect, useRef, Suspense, lazy } from 'react';
+import { useEffect, useRef } from 'react';
 import './LoadingScreen.css';
-
-const Spline = lazy(() => import('@splinetool/react-spline'));
 
 const LoadingScreen = ({ onComplete }) => {
   const screenRef  = useRef(null);
@@ -45,22 +43,6 @@ const LoadingScreen = ({ onComplete }) => {
 
       {/* Ambient glow */}
       <div className="loading-glow" />
-
-      {/* ── Spline 3D luxury object — left side ── */}
-      <div className="loading-spline-wrap" aria-hidden="true">
-        <Suspense fallback={
-          <div className="loading-spline-fallback">
-            <div className="loading-spline-orb" />
-          </div>
-        }>
-          <Spline
-            scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
-            className="loading-spline-canvas"
-          />
-        </Suspense>
-        {/* Gold gradient overlay on bottom so it blends with black bg */}
-        <div className="loading-spline-fade" />
-      </div>
 
       {/* ── Center content ── */}
       <div className="loading-center">
