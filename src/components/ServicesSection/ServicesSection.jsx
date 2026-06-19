@@ -1,5 +1,6 @@
 import { SpatialServiceCard } from './SpatialServiceCard';
 import './ServicesSection.css';
+import { motion } from 'framer-motion';
 
 const services = [
   {
@@ -107,12 +108,35 @@ const ServicesSection = () => {
         <div className="services-header">
           <div className="badge badge-gold">Platform Modules</div>
           <h2 className="services-title text-display-md">
-            Healthcare OS,<br />
-            <span className="gradient-text-gold">Running at 60FPS</span>
+            <motion.span
+              initial={{ opacity: 0, y: 15, filter: 'blur(8px)' }}
+              whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+              transition={{ duration: 0.8, ease: 'easeOut' }}
+              viewport={{ once: true }}
+              style={{ color: '#FFFFFF', display: 'inline-block' }}
+            >
+              Healthcare OS,
+            </motion.span>
+            <br />
+            <motion.span
+              initial={{ clipPath: 'inset(0 100% 0 0)' }}
+              whileInView={{ clipPath: 'inset(0 0 0 0)' }}
+              transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
+              viewport={{ once: true }}
+              style={{ display: 'inline-block' }}
+            >
+              <span className="gradient-text-gold">Connecting Care, Seamlessly.</span>
+            </motion.span>
           </h2>
-          <p className="services-subtitle text-subheading">
-            Interact with our premium clinical modules. Each subsystem is engineered for sub-second precision.
-          </p>
+          <motion.p 
+            className="services-subtitle text-subheading"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: 'easeOut', delay: 0.4 }}
+            viewport={{ once: true }}
+          >
+            Everything you need for better healthcare — from finding specialists and booking appointments to accessing medical records and managing ongoing care, all in one unified platform.
+          </motion.p>
         </div>
 
         {/* Spatial Grid */}
